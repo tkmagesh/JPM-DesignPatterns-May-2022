@@ -27,6 +27,15 @@ products.Sort((p1, p2) =>
 });
 products.Print();
 
+Console.WriteLine("Filter");
+Console.WriteLine("Stationary Products");
+var stationaryProducts = products.FilterStationaryProducts();
+stationaryProducts.Print();
+
+Console.WriteLine("Costly Products");
+var costlyProducts = products.FilterCostlyProducts();
+costlyProducts.Print();
+
 //sort the products by id (default)
 /*
  * Add provisions for sorting the products by other attributes
@@ -167,6 +176,32 @@ public class Products
         {
             Console.WriteLine(p);
         }
+    }
+
+    public Products FilterStationaryProducts()
+    {
+        var result = new Products();
+        foreach (var product in list)
+        {
+            if (product.Category == "Stationary")
+            {
+                result.Add(product);
+            }
+        }
+        return result;
+    }
+
+    public Products FilterCostlyProducts()
+    {
+        var result = new Products();
+        foreach (var product in list)
+        {
+            if (product.Cost >1000)
+            {
+                result.Add(product);
+            }
+        }
+        return result;
     }
 
 }
