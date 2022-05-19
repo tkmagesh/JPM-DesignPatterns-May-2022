@@ -64,3 +64,7 @@ Code Smells
     1. new
     2. static classes & static methods
     3. if then & switch case
+
+Instead of small number of large classes, better to have large number of small classes
+
+

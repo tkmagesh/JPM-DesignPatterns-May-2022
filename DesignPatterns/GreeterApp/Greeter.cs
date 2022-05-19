@@ -3,21 +3,16 @@ namespace GreeterApp
 {
     public class Greeter
     {
-        private ITimeService _timeService;
-        private IMessageGenerator _messageGenerator;
+        private readonly IMessageGenerator messageGenerator;
 
-        public Greeter(ITimeService timeService, IMessageGenerator messageGenerator)
+        public Greeter(IMessageGenerator messageGenerator)
         {
-            _timeService = timeService;
-            _messageGenerator = messageGenerator;
+            this.messageGenerator = messageGenerator;
         }
 
         public string Greet(string userName)
         {
-            
-            var currentTime = _timeService.GetCurrent();
-            return _messageGenerator.GenerateMessage(userName);
-            
+            return messageGenerator.GenerateMessage(userName);   
         }
     }
 
@@ -42,6 +37,29 @@ namespace GreeterApp
         public string GenerateMessage(string userName)
         {
             return $"Hi {userName}, Good Evening!";
+        }
+    }
+
+    public class MessageGeneratorFactory : IMessageGeneratorFactory
+    {
+        private readonly ITimeService timeService;
+
+        public MessageGeneratorFactory(ITimeService timeService)
+        {
+            this.timeService = timeService;
+        }
+        public IMessageGenerator GetGenerator()
+        {
+            var currentHour = timeService.GetCurrent().Hour;
+            if (currentHour < 12)
+            {
+                return new MorningMessageGenerator();
+            }
+            if (currentHour >= 12 && currentHour < 17)
+            {
+                return new AfternoonMessageGenerator();
+            }
+            return new EveningMessageGenerator();
         }
     }
 

@@ -4,9 +4,18 @@
 Console.WriteLine("Enter you name :");
 var userName = Console.ReadLine();
 
-var currentHour = DateTime.Now.Hour;
+/*
+ DI.register<ITimeService, TimeService>()
+ DI.register<IMessageGeneratorFactory, MessageGeneratorFactory>()
+ DI.register<Greeter, Greeter>()
 
-var greeter = new Greeter(new TimeService());
+ var greeter = DI.Get<Greeter>()
+ */
+
+var timeService = new TimeService();
+var generatorFactory = new MessageGeneratorFactory(timeService);
+var messageGenerator = generatorFactory.GetGenerator();
+var greeter = new Greeter(messageGenerator);
 var message = greeter.Greet(userName);
 Console.WriteLine(message);
 
