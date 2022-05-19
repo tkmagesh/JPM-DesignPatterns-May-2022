@@ -7,6 +7,26 @@ products.Add(new Product { Id = 103, Name = "Mouse", Cost = 500, Category = "Ele
 
 products.Print();
 
+Console.WriteLine("Sort (name)");
+products.Sort(new ProductComparerByName());
+products.Print();
+
+Console.WriteLine("Sort (Cost)");
+products.Sort(new ProductComparerByCost());
+products.Print();
+
+Console.WriteLine("Sort (Category)");
+products.Sort(new ProductComparerByCategory());
+products.Print();
+
+Console.WriteLine("Sort (id)");
+products.Sort((p1, p2) =>
+{
+    return p1.Id > p2.Id ? 1 : p1.Id < p2.Id ? -1 : 0;
+
+});
+products.Print();
+
 //sort the products by id (default)
 /*
  * Add provisions for sorting the products by other attributes
@@ -26,6 +46,38 @@ public class Product
     }
 }
 
+public class ProductComparerByName : IProductComparer
+{
+    public int Compare(Product p1, Product p2)
+    {
+        return p1.Name.CompareTo(p2.Name);
+    }
+}
+
+public class ProductComparerByCost : IProductComparer
+{
+    public int Compare(Product p1, Product p2)
+    {
+        if (p1.Cost < p2.Cost)
+        {
+            return -1;
+        }
+        if (p1.Cost > p2.Cost)
+        {
+            return 1;
+        }
+        return 0;
+    }
+}
+
+public class ProductComparerByCategory : IProductComparer
+{
+    public int Compare(Product p1, Product p2)
+    {
+        return p1.Category.CompareTo(p2.Category);
+    }
+}
+
 public class Products
 {
     private IList<Product> list = new List<Product>();
@@ -35,11 +87,75 @@ public class Products
         get => list;
     }
 
-    public void Sort()
+    public void Sort(IProductComparer comparer)
     {
-
+        for (var i=0; i < list.Count-1; i++)
+        {
+            for (var j=i+1; j < list.Count; j++)
+            {
+                if (comparer.Compare(list[i], list[j]) > 0)
+                {
+                    var temp = list[i];
+                    list[i] = list[j];
+                    list[j] = temp;
+                }
+            }
+        }
     }
 
+    public void Sort(string attrName)
+    {
+        for (var i = 0; i < list.Count - 1; i++)
+        {
+            for (var j = i + 1; j < list.Count; j++)
+            {
+               if (attrName == "Name")
+                {
+                    if (list[i].Name.CompareTo(list[j].Name) > 0)
+                    {
+                        var temp = list[i];
+                        list[i] = list[j];
+                        list[j] = temp;
+                    }
+                }
+               if (attrName == "Cost")
+                {
+                    if (list[i].Cost > list[j].Cost)
+                    {
+                        var temp = list[i];
+                        list[i] = list[j];
+                        list[j] = temp;
+                    }
+                }
+               if (attrName == "Category")
+                {
+                    if (list[i].Category.CompareTo(list[j].Category) > 0)
+                    {
+                        var temp = list[i];
+                        list[i] = list[j];
+                        list[j] = temp;
+                    }
+                }
+                
+            }
+        }
+    }
+
+    public void Sort(Func<Product, Product, int> compare)
+    {
+        for (var i = 0; i < list.Count - 1; i++)
+        {
+            for (var j = i + 1; j < list.Count; j++)
+            {
+                if (compare(list[i], list[j]) > 0)
+                {
+                    var temp = list[i];
+                    list[i] = list[j];
+                    list[j] = temp;
+                }
+            }
+        }
+    }
     public void Add(Product product)
     {
         list.Add(product);

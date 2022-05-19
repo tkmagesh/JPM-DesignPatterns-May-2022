@@ -68,3 +68,6 @@ Code Smells
 Instead of small number of large classes, better to have large number of small classes
 
 
+Commanility Variability
+    Keep what is common together
+    Move out what is varying
