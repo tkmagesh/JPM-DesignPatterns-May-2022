@@ -1,0 +1,66 @@
+Magesh Kuppan
+
+Schedule:
+    Commence    : 9:30 AM
+    Tea Break   : 11:15 AM (15 mins)
+    Lunch Break : 1:00 PM (1 Hr)
+    Tea Break   : 3:30 PM (15 mins)
+    Wind up     : 5:30 PM
+
+Methodology:
+    No powerpoints
+    100% hands on
+
+About You:
+    Name
+    Experience
+    Primary Skillset
+    Experiments with Design Patterns
+
+
+Anyone can build an application that works
+Not everyone can build an application that is "maintainable" (easy to change)
+
+Maintaining
+    Bug Fixes
+    Adding New Features (Extensibility)
+    Removing Dead Features
+
+class PastClass{
+
+}
+
+Class PresentClass{
+    private PastClass _pastClass;
+    public PresentClass(){
+        _pastClass = new PastClass();
+    }
+    public void DoSomething(){
+        _pastClass.DoSomething();
+    }
+}
+
+
+class FutureClass{
+
+}
+
+No tight coupling
+
+OO Design Principles
+    Open Closed Principle
+    Dependency Inversion Principle
+    Single Responsibility Principle
+
+Write a simple console program that will do the following
+    1. Accept the userName from the user
+    2. Print a personalized greeting message
+        if hour of the day < 12
+            "Hi Magesh, Good Morning!"
+        else
+            "Hi Magesh, Good Afternoon!"
+
+Code Smells
+    1. new
+    2. static classes & static methods
+    3. if then & switch case
