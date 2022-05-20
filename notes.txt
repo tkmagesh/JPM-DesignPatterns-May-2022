@@ -262,3 +262,7 @@ function subtract(x,y){
     result = x - y
     console.log('subtract result = ', result);
 }
+
+
+Behavioral Patterns
+    Deals with the ways to communicate between objects.
