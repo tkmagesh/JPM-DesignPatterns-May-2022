@@ -133,6 +133,10 @@ Structural Patterns
         To separate the interface of a class from its implementation.
         Bridge lets the two parts of a class vary independently.
 
+    Decorator
+        To add new functionality to an existing class without modifying its structure.
+        Decorator lets you add new functionality to an existing class without altering its structure.
+
 public class CityFromExternalSystem{
 
 }
@@ -177,3 +181,76 @@ Logger
 var logger = new Logger()
 
 logger.Writer = new FileWriter()
+
+
+invocation started
+add result = 300
+invocation completed
+
+invocation started
+subtract result = -100
+invocation completed
+
+class Calculator{
+    public void Add(int a, int b){
+        Console.WriteLine(a + b);
+    }
+
+    public void Subtract(int a, int b){
+        Console.WriteLine(a - b);
+    }
+}
+
+class LogCalculator {
+    public LogCalculator(Calculator calculator){
+        _calculator = calculator;
+    }
+    public void Add(int a, int b){
+        Console.WriteLine("invocation started");
+        _calculator.Add(a, b);
+        Console.WriteLine("invocation completed");
+    }
+
+    public void Subtract(int a, int b){
+        Console.WriteLine("invocation started");
+        _calculator.Subtract(a, b);
+        Console.WriteLine("invocation completed");
+    }
+}
+
+
+function logOperation(operation){
+    return function(x,y){
+        console.log('Invocation started @ ', Date());
+        operation(x,y)
+        console.log('Invocation completed @ ', Date());
+    }
+}
+
+function add(x,y){
+    result = x + y
+    console.log('add result = ', result)
+}
+
+function subtract(x,y){
+    result = x - y
+    console.log('subtract result = ', result);
+}
+
+
+//TypeScript
+class logDecorator{
+
+}
+
+@logDecorator()
+function add(x,y){
+    result = x + y
+    console.log('add result = ', result)
+}
+
+@logDecorator()
+function subtract(x,y){
+    result = x - y
+    console.log('subtract result = ', result);
+}
