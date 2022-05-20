@@ -137,6 +137,14 @@ Structural Patterns
         To add new functionality to an existing class without modifying its structure.
         Decorator lets you add new functionality to an existing class without altering its structure.
 
+    Composite
+        To create a tree structure of objects.
+        Composite lets you compose objects into tree structures and then work with the tree as a whole.
+
+    Facade
+        To provide a simplified interface to a large number of classes.
+        Facade lets you access a set of interfaces in a simpler way.
+
 public class CityFromExternalSystem{
 
 }
