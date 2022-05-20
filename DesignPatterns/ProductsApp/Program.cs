@@ -64,7 +64,7 @@ Console.WriteLine("Costly Stationary Products");
 costlyStationaryProducts.Print();
 
 Func<Predicate<Product>, Predicate<Product>, Predicate<Product>> OR = (left, right) => (product) => left(product) || right(product);
-//public static delegate Func<Predicate<T>, Predicate<T>, Predicate<T>> OR<T> = (T left , T right) => (T item) => left(item) || right(item);
+//Func<Predicate<T>, Predicate<T>, Predicate<T>> OR<T> = (T left , T right) => (T item) => left(item) || right(item);
 
 var csps = products.Filter(OR(costlyProductPredicate, stationaryProductPredicate));
 Console.WriteLine("Costly Stationary Products [functions]");
