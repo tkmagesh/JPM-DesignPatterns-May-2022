@@ -42,6 +42,33 @@ costlyProducts.Print();
  * NOTE : DO NOT use the builtin sort functionality.. write your own
  */
 
+
+/*
+Func<Product, bool> costlyProductPredicate = p => p.Cost > 1000;
+Func<Product, bool> stationaryProductPredicate = p => p.Category == "Stationary";
+*/
+Console.WriteLine("Filter using delegates and delegate composition");
+Predicate<Product> costlyProductPredicate = p => p.Cost > 1000;
+Predicate<Product> stationaryProductPredicate = p => p.Category == "Stationary";
+var cps = products.Filter(costlyProductPredicate);
+Console.WriteLine("Costly Products");
+cps.Print();
+
+var sps = products.Filter(stationaryProductPredicate);
+Console.WriteLine("Stationary Products");
+sps.Print();
+
+Predicate<Product> costlyStationaryProductPredicate = new Or(costlyProductPredicate, stationaryProductPredicate).Predicate;
+var costlyStationaryProducts = products.Filter(costlyStationaryProductPredicate);
+Console.WriteLine("Costly Stationary Products");
+costlyStationaryProducts.Print();
+
+Func<Predicate<Product>, Predicate<Product>, Predicate<Product>> OR = (left, right) => (product) => left(product) || right(product);
+//Func<Predicate<T>, Predicate<T>, Predicate<T>> OR = (T left , T right) => (item) => left(item) || right(item);
+var csps = products.Filter(OR(costlyProductPredicate, stationaryProductPredicate));
+Console.WriteLine("Costly Stationary Products [functions]");
+csps.Print();
+
 public class Product
 {
     public int Id { get; set; }
@@ -204,6 +231,33 @@ public class Products
         return result;
     }
 
+    public Products Filter(Predicate<Product> predicate)
+    {
+        var result = new Products();
+        foreach (var product in list)
+        {
+            if (predicate(product))
+            {
+                result.Add(product);
+            }
+        }
+        return result;
+    }
+}
+
+public class Or
+{
+    private readonly Predicate<Product> left;
+    private readonly Predicate<Product> right;
+
+    public Predicate<Product> Predicate {
+        get => (product) => left(product) || right(product);
+    }
+    public Or(Predicate<Product> left, Predicate<Product> right)
+    {
+        this.left = left;
+        this.right = right;
+    }
 }
 
 

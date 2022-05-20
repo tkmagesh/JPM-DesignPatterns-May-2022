@@ -54,6 +54,7 @@
     /// <summary>
     /// ConcreteDecorator1
     /// </summary>
+    [Serializable]
     public class StatisticsDecorator : MailServiceDecoratorBase
     {
         public StatisticsDecorator(IMailService mailService)
