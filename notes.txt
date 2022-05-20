@@ -266,3 +266,9 @@ function subtract(x,y){
 
 Behavioral Patterns
     Deals with the ways to communicate between objects.
+
+    Strategy Pattern
+        a family of algorithms that can be swapped at runtime.
+
+    Command Pattern
+        a request is represented as an object that contains the information about the request.
