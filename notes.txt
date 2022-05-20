@@ -272,3 +272,33 @@ Behavioral Patterns
 
     Command Pattern
         a request is represented as an object that contains the information about the request.
+
+    Memento Pattern
+        capture and externalize an object's internal state to be able to restore it later.
+
+    Chain of Responsibility Pattern
+        a chain of objects that are responsible for handling a request.
+
+    Observer Pattern
+        a subscription model in which a set of interested objects are notified when an event occurs.
+
+    State Pattern
+        a class in which the state of the object is kept in an object rather than in the object's code.
+        to allow an object to alter its behavior when its internal state changes.
+
+/products
+/customers
+/orders
+
+function handleRequest(endpoint){
+    if (endpoint === '/products'){
+        return handleProductsRequest();
+    }
+    if (endpoint === '/customers'){
+        return handleCustomersRequest();
+    }
+    if (endpoint === '/orders'){
+        return handleOrdersRequest();
+    }
+}
+
