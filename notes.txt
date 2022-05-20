@@ -79,3 +79,42 @@ Homework:
         filter affordable products (!costly products)
         filter costly stationary products
         etc
+
+India
+    Discount (10)
+    ShippingCost (100)
+
+US
+    Discount(5)
+    ShippingCost(50)
+
+
+Construction
+    Bike
+        State
+        Behavior
+            Start()
+            Ride()
+            ApplyBreak()
+            Accelerate()
+            Stop()
+        Static methods
+            .Create()
+            .AddEngine()
+            .AddBreakSystem()
+
+
+    public class Employee{
+        public Employee(){
+            //construction logic
+        }
+    }
+
+
+    Agile Princiles Patterns and Practices - Robert. C. Martin
+    Refactoring - Martin Fowler
+    Refactoring Patterns
+    Head First Design Patterns
+    Growing Object Oriented Software Guided By Tests
+
+   
