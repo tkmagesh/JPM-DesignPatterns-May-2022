@@ -117,4 +117,15 @@ Construction
     Head First Design Patterns
     Growing Object Oriented Software Guided By Tests
 
+Creational Patterns
+    FactoryMethod, Abstract Factory - Which?
+    Builder, Prototype - How?
+    Singleton - Lifetime
+
+Structural Patterns
+    Relations between the objects and classes
+    
+
+
+
    
