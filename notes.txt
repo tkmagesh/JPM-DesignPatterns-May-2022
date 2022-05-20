@@ -124,8 +124,56 @@ Creational Patterns
 
 Structural Patterns
     Relations between the objects and classes
-    
+
+    Adapter
+        To convert the interface of a class into another interface the client expects.
+        Adapter lets classes work togehter that couldn't otherwise because of incompatible interfaces.
+
+    Bridge
+        To separate the interface of a class from its implementation.
+        Bridge lets the two parts of a class vary independently.
+
+public class CityFromExternalSystem{
+
+}
+
+public class City {
+    public City(CityFromExternalSystem cityFromExternalSystem){
+        //converting the external system city to our city
+    }
+}
+
+public class Employee{
+    public int Id;
+    public string Name;
+    public string City;
+
+    public Employee(int id){
+        Id = id;
+    }
+
+}
+
+var emp = new Employee(100) { Name = "", City ="" }
+
+emp.Id = 100
+emp.Name = "magesh"
+emp.City = "Bengaluru"
 
 
+Employee table
+Id  Name    City
+100 Magesh  Bengaluru
+    Suresh  Pune
 
-   
+
+Writer
+    FileWriter
+    NetworkWriter
+    DBWriter
+
+Logger
+
+var logger = new Logger()
+
+logger.Writer = new FileWriter()
